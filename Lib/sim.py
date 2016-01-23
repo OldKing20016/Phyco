@@ -33,6 +33,7 @@ class sim():
         WARNING: Using dict to store all combinations of two objects,
         data loss would happen when too many objects encountered.
         """
+        
         dt = self.step
         i = int(end / dt)  # number of steps needed
         x = dict(zip(self.objs, [obj.pos for obj in self.objs]))
@@ -45,6 +46,7 @@ class sim():
         d = dict(zip(self.__comb, [abs(x[comb[0]] - x[comb[1]]) \
                                    for comb in self.__comb]))
         self.cache = (_cache(x), _cache(d))  # initialize cache
+        
         for i in range(i):
             for Obj in self.objs:
                 pos = x[Obj]
@@ -86,10 +88,11 @@ class sim():
                         # collision detected
                         mechanics.colSolver()
                         self.collisiondetect(d, D, v, x)
-                        # WARNING: May encounter infinite loop
+                        # WARNING: May encounter infinite loop, not checked yet
 
     def __isCoplannar(self, point1, point2, d1, d2):
-        """Determine if two trajectories are coplannar
+        # could probably be included in alg.py
+        """Check if two trajectories are coplannar
 
         If two segments are coplannar then any segment
         between two points on the lines are in their
@@ -104,8 +107,18 @@ class sim():
         return False
 
     def __isIntersect(self, p1, p2, p3, p4):
-        pass
-
+        """Check if two segments intersects
+        
+        Iif two segments intersects
+        
+        """
+        AB = p1 - p2
+        AC = p1 - p3
+        AD = p1 - p4
+        if AB.cross(AC) * AB.cross(AD) <= 0:
+            return True
+        return False
+    
     def __str__(self):
         X = self.X
         for i in X:
