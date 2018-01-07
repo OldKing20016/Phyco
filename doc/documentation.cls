@@ -10,10 +10,11 @@
 \RequirePackage[margin=1in]{geometry}
 \RequirePackage{fancyhdr}
 \pagestyle{fancy}
-\lhead{\textcopyright\space Yifei Zheng}
+\lhead{\textcopyright\space 2017 - 2018 Yifei Zheng}
 \renewcommand\headrule{}
 
 \newcommand{\NOTE}[1]{[\textit{Note:} #1 —-- end-note]}
+\newcommand{\EG}[1]{[\textit{Example:} #1 --- end-example]}
 
 \renewcommand\maketitle{
     \begin{titlepage}
